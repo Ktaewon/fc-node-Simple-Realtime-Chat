@@ -36,9 +36,9 @@
 
   const drawChats = () => {
     chatsEl.innerHTML = '';
-    chats.forEach(({ message, nickname }) => {
+    chats.forEach(({ message, nickname, createdAt }) => {
       const div = document.createElement('div');
-      div.innerText = `${nickname}: ${message}`;
+      div.innerText = `${nickname}: ${message}  [${createdAt}]`;
       chatsEl.appendChild(div);
     });
   };

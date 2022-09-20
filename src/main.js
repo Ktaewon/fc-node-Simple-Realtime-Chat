@@ -9,8 +9,15 @@ const mount = require('koa-mount');
 const route = require('koa-route');
 const websockify = require('koa-websocket');
 const mongoClient = require('./mongo');
+const morgan = require('morgan');
+require('dotenv').config();
 
 const app = websockify(new Koa());
+
+// test환경에서는 로그가 찍히지 않도록 함
+if (process.env.NODE_ENV !== 'test') {
+  app.use(morgan('dev'));
+}
 
 const pug = new Pug({
   viewPath: path.resolve(__dirname, './views'),
